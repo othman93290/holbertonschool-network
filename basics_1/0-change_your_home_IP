@@ -1,16 +1,19 @@
 #!/usr/bin/env bash
-# Ce script modifie le fichier /etc/hosts pour configurer localhost et facebook.com avec des adresses IP spécifiques
+# Ce script modifie /etc/hosts pour que localhost pointe vers 127.0.0.2 et facebook.com vers 8.8.8.8
 
-# Sauvegarde du fichier /etc/hosts
+# Sauvegarde du fichier original
 sudo cp /etc/hosts /etc/hosts.bak
 
-# Modification de l'adresse IP de localhost à 127.0.0.2
-sudo sed -i '/127.0.0.1\s\+localhost/d' /etc/hosts
-echo "127.0.0.2 localhost" | sudo tee -a /etc/hosts
+# Supprimer toute ligne existante liant localhost à 127.0.0.1
+sudo sed -i '/127\.0\.0\.1\s\+localhost/d' /etc/hosts
 
-# Ajout de l'adresse IP pour facebook.com
-echo "8.8.8.8 facebook.com" | sudo tee -a /etc/hosts
+# Ajouter la nouvelle liaison pour localhost
+echo "127.0.0.2 localhost" | sudo tee -a /etc/hosts > /dev/null
 
+# Ajouter la nouvelle IP pour facebook.com
+echo "8.8.8.8 facebook.com" | sudo tee -a /etc/hosts > /dev/null
+
+# Confirmation
 echo "Changements appliqués :"
 echo "localhost => 127.0.0.2"
 echo "facebook.com => 8.8.8.8"
