@@ -1,3 +1,4 @@
 #!/usr/bin/env bash
-# Script > list listening ports and PID and name of each socket
-netstat -l -p
+# Script qui liste les ports d'écoute TCP/UDP et les sockets UNIX
+
+sudo netstat -tunlp && sudo netstat -xlp
