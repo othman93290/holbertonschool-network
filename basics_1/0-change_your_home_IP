@@ -1,17 +1,3 @@
 #!/usr/bin/env bash
-# This script will change your home IP address to the one you provide
-
-# Sauvegarde du fichier hosts avant modification
-sudo cp /etc/hosts /etc/hosts.bak
-
-# Suppression de toute ligne existante associée à localhost et facebook.com
-sudo sed -i '/127\.0\.0\.1\s\+localhost/d' /etc/hosts
-sudo sed -i '/facebook\.com/d' /etc/hosts
-
-# Ajouter les nouvelles lignes pour localhost et facebook.com
-echo -e "127.0.0.2\tlocalhost\n8.8.8.8\tfacebook.com" | sudo tee -a /etc/hosts > /dev/null
-
-# Confirmation du changement
-echo "Changements appliqués :"
-echo "localhost => 127.0.0.2"
-echo "facebook.com => 8.8.8.8"
+# configures an Ubuntu server from localhost to facebook
+sudo bash -c 'echo -e "127.0.0.2 localhost \n 8.8.8.8 facebook.com" > /etc/hosts'
